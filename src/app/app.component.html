@@ -1,29 +1,49 @@
 <div *ngIf="_Parcelas != undefined" class="container">
   <div class="row d-flex justify-content-center align-items-center" style="height: 100%;">
-    <form class="form row">
-      <div class="col-sm-6 text-center logo-content">
-        <img src="../assets/images/picpay-logo.png" class="img-fluid" alt="picpay logo">
-        <h4 class="text-center">Simulator</h4>
+    <form class="form row" [formGroup]="_Form">
+      <div class="flex-column align-items-center col-sm-6 text-center d-flex justify-content-center logo-content">
+        <div class="h-100">
+          <img src="../assets/images/picpay-logo.png" class="img-fluid" alt="picpay logo">
+        </div>
+        <div class="h-100">
+          <h4 class="text-center text-green">Simulator</h4>
+        </div>
       </div>
       <div class="col-sm-6 dflex justify-content-center align-self-center">
-        <b><p class="text-center">O valor total é: {{_Total | currency:'BRL'}} ou {{_SelectedValue}}x de {{_TotalParcelas | currency: 'BRL'}}</p></b>
-        <div class="form-group row">
-          <label for="valor" class="col-sm-4 col-form-label">Valor do boleto</label>
-          <div class="col-sm-8">
-            <input type="number" [(ngModel)]="_Valor" name="valor" class="form-control" id="valor">
+        <br>
+        <b><p class="text-center text-green">Total: {{_Total | currency:'BRL'}}</p></b>
+        <b><p class="text-center text-green">{{_ValorSelecionado}}x de {{_TotalParcelas | currency: 'BRL'}}</p></b>
+        <div class="form-row">
+          <div class="form-group col-12 col-sm-6">
+            <label for="valor">Saldo em conta</label>
+            <input type="number" formControlName="saldo" [ngClass]="{'is-invalid':_Form.get('saldo').invalid}" [(ngModel)]="_Saldo" name="saldo" class="form-control" min="0" max="5000" id="saldo">
+            <div *ngIf="_Form.get('saldo').hasError('min')" class="invalid-feedback d-block">
+              <p class="text-center">O valor mínimo é de {{ 0.01 | currency:'BRL' }}</p>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="parcelas" class="col-sm-5 col-form-label">Parcelas</label>
-          <div class="col-sm-7">
-            <select [(ngModel)]="_SelectedValue" name="parcelas" class="form-control" id="parcelas">
+          <div class="form-group col-12 col-sm-6">
+            <label for="valor">Valor do boleto</label>            
+            <input type="number" formControlName="valor" [ngClass]="{'is-invalid': _Form.get('valor').invalid && _Form.get('valor').touched}" [(ngModel)]="_Valor" name="valor" class="form-control" min="0" max="5000" id="valor">
+            <div *ngIf="_Form.get('valor').hasError('required') && _Form.get('valor').touched" class="invalid-feedback d-block">
+              <p class="text-center">O valor é obrigatório</p>
+            </div>
+            <div *ngIf="_Form.get('valor').hasError('min')" class="invalid-feedback d-block">
+              <p class="text-center">O valor mínimo é de {{ 0.01 | currency:'BRL' }}</p>
+            </div>
+            <div *ngIf="_Form.get('valor').hasError('max')" class="invalid-feedback d-block">
+              <p class="text-center">O valor máximo é de {{ 5000 | currency:'BRL' }}</p>
+            </div>
+          </div>
+          <div class="form-group col-12 col-sm-12">
+            <label for="parcelas">Parcelas</label>
+            <select formControlName="parcelas" [(ngModel)]="_ValorSelecionado" name="parcelas" class="form-control" id="parcelas">
               <option *ngFor="let parcelas of _Parcelas" [value]="parcelas">{{parcelas}}</option>
             </select>
           </div>
         </div>
         <hr>
-        <div class="form-group align-items-end">
-          <input type="button" (click)="Calcular()" class="btn btn-primary btn-block" value="Calcular">
+        <div class="button-group d-flex justify-content-center">
+          <input type="button" (click)="Calcular()" [disabled]="_Form.invalid" class="btn btn-success btn-70 btn-round" value="Calcular">
         </div>
       </div>
     </form>
