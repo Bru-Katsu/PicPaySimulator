@@ -14,14 +14,14 @@
         <b><p class="text-center text-green">Total: {{_Total | currency:'BRL'}}</p></b>
         <b><p class="text-center text-green">{{_ValorSelecionado}}x de {{_TotalParcelas | currency: 'BRL'}}</p></b>
         <div class="form-row">
-          <div class="form-group col-12 col-sm-6">
+          <div class="form-group col-6 col-sm-6">
             <label for="valor">Saldo em conta</label>
             <input type="number" formControlName="saldo" [ngClass]="{'is-invalid':_Form.get('saldo').invalid}" [(ngModel)]="_Saldo" name="saldo" class="form-control" min="0" max="5000" id="saldo">
             <div *ngIf="_Form.get('saldo').hasError('min')" class="invalid-feedback d-block">
               <p class="text-center">O valor mínimo é de {{ 0.01 | currency:'BRL' }}</p>
             </div>
           </div>
-          <div class="form-group col-12 col-sm-6">
+          <div class="form-group col-6 col-sm-6">
             <label for="valor">Valor do boleto</label>            
             <input type="number" formControlName="valor" [ngClass]="{'is-invalid': _Form.get('valor').invalid && _Form.get('valor').touched}" [(ngModel)]="_Valor" name="valor" class="form-control" min="0" max="5000" id="valor">
             <div *ngIf="_Form.get('valor').hasError('required') && _Form.get('valor').touched" class="invalid-feedback d-block">

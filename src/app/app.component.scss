@@ -1,6 +1,27 @@
+@import "./../../node_modules/bootstrap/scss/bootstrap";
+@import "./../../node_modules/bootstrap/scss/functions";
+@import "./../../node_modules/bootstrap/scss/variables";
+
 .form{
     background-color: white;
     border-radius: 20px;
+    max-width: 60%; 
+}
+@include media-breakpoint-down(sm){
+    .form{
+        max-width: 100%;
+        border-radius: 0rem;
+    }    
+}
+@include media-breakpoint-up(sm){
+    .form{
+        max-width: 90%;
+    }
+}
+@include media-breakpoint-up(lg){
+    .form{
+        max-width: 75%;
+    }    
 }
 .container{
     height: 100%;
@@ -35,7 +56,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0; 
 }
 .is-invalid{
-    background-image: none;
+    background-image: none !important;
     padding-right: none !important;
 }
 .btn-70{
