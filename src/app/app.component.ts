@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as Inputmask from "inputmask"
+
 
 @Component({
   selector: 'app-root',
@@ -24,6 +26,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     this.validation()
+    Inputmask().mask(document.querySelectorAll("input"));
   }
   
   constructor(private _FormBuilder: FormBuilder) {

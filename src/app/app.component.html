@@ -16,7 +16,7 @@
         <div class="form-row">
           <div class="form-group col-6 col-sm-6">
             <label for="valor">Saldo em conta</label>
-            <input type="number" formControlName="saldo" [ngClass]="{'is-invalid':_Form.get('saldo').invalid}" [(ngModel)]="_Saldo" name="saldo" class="form-control" min="0" max="5000" id="saldo">
+            <input type="number" formControlName="saldo" data-inputmask="'mask': '0.000.00'" [ngClass]="{'is-invalid':_Form.get('saldo').invalid}" [(ngModel)]="_Saldo" name="saldo" class="form-control" min="0" max="5000" id="saldo">
             <div *ngIf="_Form.get('saldo').hasError('min')" class="invalid-feedback d-block">
               <p class="text-center">O valor mínimo é de {{ 0.01 | currency:'BRL' }}</p>
             </div>
