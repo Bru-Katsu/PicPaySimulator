@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as Inputmask from "inputmask"
-
 
 @Component({
   selector: 'app-root',
@@ -17,7 +15,7 @@ export class AppComponent implements OnInit {
   public _ValorSelecionado: number = 1
   public _Saldo: number
   public _bHasZeroSaldo: boolean = false
-  public _Valor: number
+  public _Valor: number 
   public _Total: number = 0
   public _ValorJurosCartao: number = 0
   public _ValorJurosParcela: number = 0
@@ -26,7 +24,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     this.validation()
-    Inputmask().mask(document.querySelectorAll("input"));
   }
   
   constructor(private _FormBuilder: FormBuilder) {
@@ -57,14 +54,16 @@ export class AppComponent implements OnInit {
   }
 
   private DefaultValues(): void{
-    this._Saldo = undefined
+    if(this._bHasZeroSaldo)
+      this._Saldo = undefined
+
     this._bHasZeroSaldo = false
   }
 
   public Calcular(): void{
     this.InitValues()
     let valorboleto = this.CalcTabelaPrice(this._Valor - this._Saldo, this._JurosCartao, 1)
-    let parcela = this.CalcTabelaPrice(valorboleto, this._JurosParcela, parseInt(this._ValorSelecionado.toString()))
+    let parcela = parseInt(this._ValorSelecionado.toString()) > 1 ? this.CalcTabelaPrice(valorboleto, this._JurosParcela, parseInt(this._ValorSelecionado.toString())) : valorboleto
 
     this._Total = parcela 
     this._TotalParcelas = parcela / this._ValorSelecionado
