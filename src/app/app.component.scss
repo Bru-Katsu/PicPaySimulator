@@ -11,10 +11,12 @@
 }
 @include media-breakpoint-down(sm){
     .form{
+        height: 100%;
         max-width: 100%;
         border-radius: 0rem;
     }
     .logo-content{
+        padding: 4rem !important;
         border-bottom-left-radius: 0px !important;
         border-top-left-radius: 0px !important;
     }
