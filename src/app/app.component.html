@@ -15,7 +15,7 @@
         <b><p class="text-center text-green">{{_ValorSelecionado}}x de {{_TotalParcelas | currency: 'BRL'}}</p></b>
         <div class="form-row">
           <div class="form-group col-6 col-sm-6">
-            <label for="valor">Saldo em conta</label>
+            <label for="saldo">Saldo em conta</label>
             <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" type="text" formControlName="saldo" [ngClass]="{'is-invalid':_Form.get('saldo').invalid}" [(ngModel)]="_Saldo" name="saldo" class="form-control" min="0" max="5000" id="saldo">
             <div *ngIf="_Form.get('saldo').hasError('min')" class="invalid-feedback d-block">
               <p class="text-center">O valor mínimo é de {{ 0.01 | currency:'BRL' }}</p>
@@ -45,7 +45,7 @@
           </div>-->
         </div>
         <hr>
-        <div class="button-group d-flex justify-content-center">
+        <div class="form-row button-group d-flex justify-content-center">
           <input type="button" (click)="Calcular()" [disabled]="_Form.invalid" class="btn btn-success btn-70 btn-round" value="Calcular">
         </div>
       </div>

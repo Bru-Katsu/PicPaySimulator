@@ -2,8 +2,8 @@
   "name": "PicPay Simulator",
   "short_name": "PicPay Simulator",
   "theme_color": "#21c25e",
-  "background_color": "#2c2e2f",
-  "display": "minimal-ui",
+  "background_color": "#21c25e",
+  "display": "standalone",
   "scope": ".",
   "start_url": "./",
   "icons": [
