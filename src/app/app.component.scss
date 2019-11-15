@@ -12,7 +12,8 @@
 @include media-breakpoint-down(sm){
     .form{
         max-width: 100%;
-        border-radius: 0rem;
+        border-radius: 0rem !important;
+        border: none;
     }
     .logo-content{
         padding: 4rem !important;
@@ -29,6 +30,9 @@
     .form{
         max-width: 75%;
     }    
+}
+hr{
+    border-top: 1px solid #bdbdbd40;
 }
 .container{
     height: 100%;
@@ -57,6 +61,11 @@ h4, .text-green{
     border-color: #21c25e;
     font-size: 15px;
     font-weight: bold;
+}
+.btn-success:hover{
+    color: #fff;
+    background-color: #2dce51;
+    border-color: #1e7e34;
 }
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
